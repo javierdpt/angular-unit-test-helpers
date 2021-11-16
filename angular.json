@@ -1,0 +1,42 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "test-helpers": {
+      "projectType": "library",
+      "root": "projects/test-helpers",
+      "sourceRoot": "projects/test-helpers/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/test-helpers/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/test-helpers/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/test-helpers/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/test-helpers/src/test.ts",
+            "tsConfig": "projects/test-helpers/tsconfig.spec.json",
+            "karmaConfig": "projects/test-helpers/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "test-helpers"
+}
